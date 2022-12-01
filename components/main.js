@@ -1,5 +1,5 @@
 import { BsUpload } from "react-icons/bs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import axios from "axios"
 import { useForm } from "react-hook-form";
@@ -33,6 +33,8 @@ const Main = () => {
     // }
 
     const [genre,setGenre] = useState("none");
+
+    useEffect(() => {  },[genre]);
 
     const onSubmit = async (data) => {
         const formData = new FormData();
