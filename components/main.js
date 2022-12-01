@@ -32,15 +32,18 @@ const Main = () => {
     //     }
     // }
 
+    const [genre,setGenre] = useState("none");
+
     const onSubmit = async (data) => {
         const formData = new FormData();
-        formData.append("file", data.file[0]);
+        formData.append("audioFile", data.file[0]);
         console.log(formData)
 
-        const res = await fetch("http://localhost:3000/api/test", {
+        const res = await fetch("http://localhost:5000/api/predict", {
             method: "POST",
             body: formData,
         }).then((res) => res.json());
+        setGenre(res.genre)
         
     };
 
@@ -75,7 +78,7 @@ const Main = () => {
         </div>
         <div className="text-4xl font-semibold mt-5 bg-gradient-to-r from-green-500 to-green-700 text-transparent bg-clip-text">
             <div>The Genre of your music is:</div>
-            <div className="mt-2 text-center text-lime-600">Pop</div>
+            <div className="mt-2 text-center text-lime-600">{genre}</div>
         </div>
 
     </div>
